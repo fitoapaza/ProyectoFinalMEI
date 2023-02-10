@@ -14,8 +14,8 @@
 #define mideCap 34
 #define cargaCap 18
 #define descaCap 19
-#define outImpulso 32 //17 y  16
-#define inImpulso 39
+#define outImpulso 17
+#define inImpulso 16
 #define botonBrillo 27
 
 // Definir funciones
@@ -167,11 +167,11 @@ void setup()
   // Clear the buffer.
   display.clearDisplay();
 
-  // analogReadResolution(12);
-  // analogSetPinAttenuation(mideCap, ADC_11db);
-  // adcAttachPin(mideCap);
-  // pinMode(descaCap, INPUT);
-  // pinMode(cargaCap, OUTPUT);
+  analogReadResolution(12);
+  analogSetPinAttenuation(mideCap, ADC_11db);
+  adcAttachPin(mideCap);
+  pinMode(descaCap, INPUT);
+  pinMode(cargaCap, OUTPUT);
   pinMode(outImpulso, OUTPUT);
   pinMode(cargaCap, OUTPUT);
   //pinMode(botonBrillo, INPUT_PULLDOWN);
@@ -182,9 +182,9 @@ void setup()
 
 void loop()
 {
- // mostrarValorCapacitor(capacitancia());
+ mostrarValorCapacitor(capacitancia());
   mostrarValorInductor(inductancia());
-  //display.invertDisplay(brillo);
+  display.invertDisplay(brillo);
 }
 
 // Funciones
@@ -344,13 +344,9 @@ float inductancia(void)
   for (int i = 0; i < 50; i++)
   {
     digitalWrite(outImpulso, HIGH);
-    Serial.println("puso salida impulso en 1");
     delay(1);
-    Serial.println("hizo delay");
     digitalWrite(outImpulso, LOW);
-    Serial.println("bajo la salida del impulso");
     t = pulseIn(inImpulso, LOW);
-    Serial.print("tomo el timepo t=");
     Serial.println(t);
     fo = 1000000 / (2 * t);
     lx = (1 / (4 * pow(pi, 2) * pow(fo, 2) * cap)) * 1000000;
