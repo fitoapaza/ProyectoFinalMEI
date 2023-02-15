@@ -11,7 +11,7 @@
 #define ALTO_PANTALLA 64   // alto pantalla OLED
 #define LOGO_UTN_ALTO 64
 #define LOGO_UTN_ANCHO 51
-#define mideCap 34
+#define mideCap 36 
 #define cargaCap 18
 #define descaCap 19
 #define outImpulso 17
@@ -336,7 +336,7 @@ float inductancia(void)
   float lx = 0;
   float t = 0;
   float fo = 0;
-  float cap = 0.000000001;
+  float cap = 0.00000001034;
   float pi = 3.14159;
   float acumulado = 0;
   int countador = 0;
